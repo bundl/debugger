@@ -1,4 +1,4 @@
-debugger
+Debugger
 ========
 
-Debugger
+Query Debug
