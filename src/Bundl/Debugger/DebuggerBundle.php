@@ -8,6 +8,7 @@ namespace Bundl\Debugger;
 use Cubex\Bundle\Bundle;
 use Cubex\Events\EventManager;
 use Cubex\Events\IEvent;
+use Cubex\Log\Log;
 
 class DebuggerBundle extends Bundle
 {
@@ -17,7 +18,14 @@ class DebuggerBundle extends Bundle
       EventManager::CUBEX_QUERY,
       function (IEvent $e)
       {
-        var_dump($e->getStr("query"));
+        if(CUBEX_CLI)
+        {
+          Log::debug("Query: " . $e->getStr("query"));
+        }
+        else
+        {
+          var_dump($e->getStr("query"));
+        }
       }
     );
   }
